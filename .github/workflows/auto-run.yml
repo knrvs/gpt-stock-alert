@@ -5,7 +5,7 @@ on:
     - cron: '0 3 * * *'     # 12:00 KST
     - cron: '0 6 * * *'     # 15:00 KST
     - cron: '30 7 * * *'    # 16:30 KST
-  push:                    # ✅ 수동 푸시로도 실행
+  push:  # 수동 푸시로도 실행
 
 jobs:
   trigger-render:
