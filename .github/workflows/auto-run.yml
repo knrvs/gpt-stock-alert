@@ -6,6 +6,8 @@ on:
     - cron: '0 3 * * *'     # 12:00 KST
     - cron: '0 6 * * *'     # 15:00 KST
     - cron: '30 7 * * *'    # 16:30 KST
+      push:     # ✅ 이 줄 추가
+
 
 jobs:
   trigger-render:
