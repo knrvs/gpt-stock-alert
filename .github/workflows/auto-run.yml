@@ -1,0 +1,24 @@
+name: Daily Render Trigger
+
+on:
+  schedule:
+    # 한국 시간 기준 12:00, 15:00, 16:30 → UTC 기준 환산
+    - cron: '0 3 * * *'     # 12:00 KST
+    - cron: '0 6 * * *'     # 15:00 KST
+    - cron: '30 7 * * *'    # 16:30 KST
+
+jobs:
+  trigger-render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Dummy commit to trigger Render
+        run: |
+          echo "// updated at $(date)" >> .render-trigger.js
+          git config user.name "Auto Runner"
+          git config user.email "actions@github.com"
+          git add .render-trigger.js
+          git commit -m "🤖 Auto trigger for Render"
+          git push
