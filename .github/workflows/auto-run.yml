@@ -2,12 +2,11 @@ name: Daily Render Trigger
 
 on:
   schedule:
-    # 한국 시간 기준 12:00, 15:00, 16:30 → UTC 기준 환산
+    # 한국 시간 기준: 12:00, 15:00, 16:30 (UTC 기준으로 환산)
     - cron: '0 3 * * *'     # 12:00 KST
     - cron: '0 6 * * *'     # 15:00 KST
     - cron: '30 7 * * *'    # 16:30 KST
-      push:     # ✅ 이 줄 추가
-
+  push:                     # ✅ 수동 커밋으로도 작동하게 추가
 
 jobs:
   trigger-render:
