@@ -2,8 +2,8 @@ import requests
 import datetime
 
 # 텔레그램 봇 정보
-BOT_TOKEN = "여기에_너의_봇_토큰"
-CHAT_ID = "여기에_너의_chat_id"
+TOKEN = "7805897776:AAG-c4E6r8pDTjWBHCwmEuRkdjynssf96k4"
+CHAT_ID = "6259221563"
 
 # 오늘 날짜
 today = datetime.datetime.now().strftime("%Y-%m-%d")
