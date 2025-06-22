@@ -1,25 +1,25 @@
-import requests
-import datetime
+import telegram
+from datetime import datetime
 
-# 사용자 지정 값
-BOT_TOKEN = "7805897776:AAG-c4E6r8pDTjWBHCwmEuRkdjynssf96k4"
-CHAT_ID = "6259221563"
+# ✅ Telegram Bot Token 및 Chat ID
+bot = telegram.Bot(token='YOUR_BOT_TOKEN')
+chat_id = 'YOUR_CHAT_ID'
 
-# 메시지 생성
-now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-message = f"📢 GPT 주식알리미 알림 테스트입니다.\n정상작동 확인 시간: {now}"
+# ✅ 예측 종목 리스트 (예시)
+predicted_stocks = [
+    {'name': '알체라', 'entry': 12000, 'target': 13500, 'cut': 11500},
+    {'name': '랩지노믹스', 'entry': 2900, 'target': 3300, 'cut': 2700}
+]
 
-# 텔레그램 API URL
-url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-params = {
-    "chat_id": CHAT_ID,
-    "text": message
-}
+# ✅ 메시지 생성
+message = f"📈 [주식 급등 예상 알리미]\n🕖 {datetime.now().strftime('%Y-%m-%d')} 기준\n\n"
+for stock in predicted_stocks:
+    message += (
+        f"🔹 {stock['name']}\n"
+        f"   ▪️ 매수가: {stock['entry']:,}원\n"
+        f"   ▪️ 목표가: {stock['target']:,}원\n"
+        f"   ▪️ 손절가: {stock['cut']:,}원\n\n"
+    )
 
-# 전송 요청
-try:
-    res = requests.post(url, params=params)
-    res.raise_for_status()
-    print("✅ 메시지 전송 성공")
-except Exception as e:
-    print(f"❌ 전송 실패: {e}")
+# ✅ 메시지 전송
+bot.send_message(chat_id=chat_id, text=message)
